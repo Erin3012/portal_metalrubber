@@ -72,7 +72,7 @@ ON DUPLICATE KEY UPDATE name = VALUES(name);
 INSERT INTO modules (slug, name, description, url, available, sort_order) VALUES
 ('maintenance', 'Mantenciones', 'Mantenciones, carros y códigos QR.', 'https://mantenciones.metalrubber.cl', 1, 1),
 ('payroll', 'Remuneraciones', 'Gestión de empresas, trabajadores y liquidaciones.', 'https://remuneraciones.metalrubber.cl', 1, 2),
-('quotations', 'Cotizaciones', 'Módulo de cotizaciones Metalrubber.', 'https://cotizaciones.metalrubber.cl', 0, 3)
+('quotations', 'Cotizaciones', 'Solicitudes y cotizaciones Metalrubber.', 'https://cotizaciones.metalrubber.cl', 1, 3)
 ON DUPLICATE KEY UPDATE name = VALUES(name), description = VALUES(description), url = VALUES(url), available = VALUES(available), sort_order = VALUES(sort_order);
 
 INSERT IGNORE INTO role_modules (role_id, module_id)
@@ -83,4 +83,3 @@ INSERT IGNORE INTO role_modules (role_id, module_id)
 SELECT r.id, m.id FROM roles r JOIN modules m ON m.slug = 'payroll' WHERE r.slug = 'payroll';
 INSERT IGNORE INTO role_modules (role_id, module_id)
 SELECT r.id, m.id FROM roles r JOIN modules m ON m.slug = 'quotations' WHERE r.slug = 'quotations';
-
